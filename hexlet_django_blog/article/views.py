@@ -4,4 +4,12 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse('article')
+    temp = [
+        {'name': 'Yoda', 'position': 'CEO'},
+        {'name': 'Obi-Wan Kenobi', 'position': 'Senior Developer'},
+        {'name': 'Anakin Skywalker', 'position': 'Junior Developer'},
+        {'name': 'Jar Jar Binks', 'position': 'Trainee'},
+    ]
+    temp_new = {user.get('name'): user for user in temp}
+    print(temp_new)
+    return render(request, 'articles/index.html', context={'temp_new': temp_new},)
